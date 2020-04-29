@@ -1,0 +1,196 @@
+.defaultBtn {
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+    line-height: inherit;
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+        background: aqua;
+
+        .before {
+            transform: translateY(-105%)
+        }
+
+        .after {
+            transform: translateY(105%)
+        }
+
+        .text {
+            opacity: 1;
+            transform: scale(1)
+        }
+    }
+
+    .after,
+    .before {
+        position: absolute;
+
+        width: 100%;
+        height: 50%;
+        left: 0;
+        overflow: hidden;
+        background: aqua;
+        color: #fff;
+        transition: \transform .3s;
+    }
+
+    .text {
+        display: inline-block;
+        transform: scale(.1);
+        will-change: transform;
+        opacity: 0;
+        text-align: center;
+        color: #fff;
+        transition: \transform .3s, opacity .3s;
+    }
+
+    .after {
+        bottom: 0;
+        line-height: 0;
+    }
+
+    .before {
+        padding-top: 8px;
+        top: 0;
+    }
+}
+
+/************/
+//39,117,255
+//114,2,187
+#polo {
+    position: relative;
+    padding: 4em 0;
+    &::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg,rgba(39,117,255,.92),rgba(97, 1, 97, 0.92));
+    }
+    .polo-middle{
+        position: relative;
+        z-index: 20;
+    }
+    .polo-img{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        -o-object-position: center;
+        perspective: 600px;
+        object-position: center;
+    }
+    .polo-item {
+        transition: \transform .6s;
+        background: #fff;
+        transform-style: preserve-3d;
+        // position: relative;
+        // z-index: 5;
+        border-radius: 10px;
+        perspective: 600px;
+        box-shadow: 0 8px 20px rgba(0,0,0,.12);
+        &::after,&::before{            
+            content: '';
+            position: absolute;
+            bottom: 40px;
+            width: 30px;
+            border-radius: 5px;
+            box-shadow: 0 8px 20px rgba(0,0,0,.12);
+            opacity: 0;
+            z-index: -2;
+            background-color: #fff;
+            pointer-events: none;
+            top: 40px;
+
+        }
+        
+        &:hover{
+            perspective: 600px;
+            visibility: hidden;
+            transform: rotateY(-180deg);
+
+            &::after{
+                animation: aniafter .3s forwards;
+                animation-delay: .5s ;      
+            }
+                &::before{
+                animation: anibefore .3s forwards;
+                animation-delay: .5s ;
+            }
+            .polo-flip{
+                opacity: 1;
+                visibility: visible;
+                transform: rotateY(180deg);
+
+            }
+        }
+        .polo-content{
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .polo-flip{
+            position: absolute;
+            left: 0;
+            transition: \transform .6s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            top: -15px;
+            bottom: -15px;
+
+            width: 100%;
+            background: #fff;
+            border-radius: 10px;
+            opacity: 0;
+            visibility: hidden;
+            .polo-btn{
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 20px;
+                z-index: 10;
+            }
+        }
+    }
+}
+
+@keyframes anibefore{
+    from{
+        left: 0;
+
+    }
+    to{
+        left: -15px;
+        opacity: 1;
+    }
+}
+@keyframes aniafter{
+    from{
+        right: 0;
+
+    }
+    to{
+        right: -15px;
+        opacity: 1;
+
+    }
+}
