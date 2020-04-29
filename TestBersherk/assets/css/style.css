@@ -1,0 +1,195 @@
+.defaultBtn {
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+  line-height: inherit;
+  white-space: nowrap;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.defaultBtn:hover {
+  background: aqua;
+}
+
+.defaultBtn:hover .before {
+  transform: translateY(-105%);
+}
+
+.defaultBtn:hover .after {
+  transform: translateY(105%);
+}
+
+.defaultBtn:hover .text {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.defaultBtn .after,
+.defaultBtn .before {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  left: 0;
+  overflow: hidden;
+  background: aqua;
+  color: #fff;
+  transition: \transform .3s;
+}
+
+.defaultBtn .text {
+  display: inline-block;
+  transform: scale(0.1);
+  will-change: transform;
+  opacity: 0;
+  text-align: center;
+  color: #fff;
+  transition: \transform .3s, opacity .3s;
+}
+
+.defaultBtn .after {
+  bottom: 0;
+  line-height: 0;
+}
+
+.defaultBtn .before {
+  padding-top: 8px;
+  top: 0;
+}
+
+/************/
+#polo {
+  position: relative;
+  padding: 4em 0;
+}
+
+#polo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(39, 117, 255, 0.92), rgba(97, 1, 97, 0.92));
+}
+
+#polo .polo-middle {
+  position: relative;
+  z-index: 20;
+}
+
+#polo .polo-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -o-object-position: center;
+  perspective: 600px;
+  object-position: center;
+}
+
+#polo .polo-item {
+  transition: \transform .6s;
+  background: #fff;
+  transform-style: preserve-3d;
+  perspective: 600px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: rotate(0deg);
+}
+
+#polo .polo-item::after, #polo .polo-item::before {
+  content: '';
+  position: absolute;
+  bottom: 40px;
+  width: 30px;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  z-index: -2;
+  background-color: #fff;
+  pointer-events: none;
+  top: 40px;
+}
+
+#polo .polo-item:hover {
+  transform: rotateY(180deg);
+}
+
+#polo .polo-item:hover::after {
+  animation: aniafter .3s forwards;
+  animation-delay: .5s;
+}
+
+#polo .polo-item:hover::before {
+  animation: anibefore .3s forwards;
+  animation-delay: .5s;
+}
+
+#polo .polo-item:hover .polo-flip {
+  opacity: 1;
+  transform: rotateY(180deg);
+  visibility: visible;
+}
+
+#polo .polo-item .polo-content {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+#polo .polo-item .polo-flip {
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  top: -15px;
+  bottom: -15px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#polo .polo-item .polo-flip .polo-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  z-index: 10;
+}
+
+@keyframes anibefore {
+  from {
+    left: 0;
+  }
+  to {
+    left: -15px;
+    opacity: 1;
+  }
+}
+
+@keyframes aniafter {
+  from {
+    right: 0;
+  }
+  to {
+    right: -15px;
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=style.css.map */
